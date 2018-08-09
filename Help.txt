@@ -1,0 +1,143 @@
+Tetris Bot
+==========
+
+
+Configuration - Config.py
+-------------------------
+ - BOT_PATH  : Path to executable file.
+ - DOWN_TIME : Time between pressing and releasing.
+ - UP_TIME   : Time between releasing and next pressing.
+
+
+Mechanisms
+----------
+tetrisbot.py runs the executable file specified in BOT_PATH and communicates between
+the bot and Tetris Battle.
+
+tetrisbot.py continuously sends the current state of the game to the bot and receive
+actions from the bot to perform them.
+
+
+Input
+-----
+
+23 lines, representing the state of the tetris game.
+
+Line 1-20: Represents the 10x20 board, each line represents a row in the tetris
+matrix and each number in a line represents a tetris cell.
+
+- 0: Blank cell / unknown
+- 1: Tetrimino at the bottom of the screen
+- 2: Currently moving tetrimino
+- 3: Wall (when opponents send lines)
+- 4: Bomb
+
+Line 21 contains the active tetrimino type.
+Line 22 contains the next tetrimino type.
+Line 23 contains the held tetrimino type.
+
+- -1: Not available / none
+-  0: O-tetrimino
+-  1: T-tetrimino
+-  2: J-tetrimino
+-  3: S-tetrimino
+-  4: L-tetrimino
+-  5: Z-tetrimino
+-  6: I-tetrimino
+
+--------                                          --------
+--[][]--  --[]--  []----  --[][]  ----[]  [][]--  [][][][]
+--[][]--  [][][]  [][][]  [][]--  [][][]  --[][]  --------
+--------  ------  ------  ------  ------  ------  --------
+
+Output Specifications
+---------------------
+
+Set of commands to perform, each on its own line, terminated with `#finish`.
+
+command     description
+-------     -----------
+#left       moves the tetrimino to the left
+#right      moves the tetrimino to the right
+#hold       holds the tetrimino and use the held tetrimino
+#drop       drops the tetrimino all the way down
+#rotate     rotates the tetrimino clockwise
+#finish     commands are finished
+
+You must output `#finish` after each command set, or tetrisbot.py will
+not send the next state to the bot.
+
+
+Key Bindings
+------------
+
+tetrisbot.py uses the following keys to perform actions on Tetris Battle,
+so set them accordingly, or modify the code:
+
+command     key equivalent
+-------     --------------
+#left       left arrow
+#right      right arrow
+#hold       z
+#drop       space bar
+#rotate     up arrow
+
+
+Example Session
+---------------
+
+ >>>  0 0 0 0 2 0 0 0 0 0
+ >>>  0 0 0 0 2 0 0 0 0 0
+ >>>  0 0 0 0 2 0 0 0 0 0
+ >>>  0 0 0 0 2 0 0 0 0 0
+ >>>  0 0 0 0 0 0 0 0 0 0
+ >>>  0 0 0 0 0 0 0 0 0 0
+ >>>  0 0 0 0 0 0 0 0 0 0
+ >>>  0 0 0 0 0 0 0 0 0 0
+ >>>  1 1 0 0 0 0 1 0 0 0
+ >>>  1 1 0 0 0 1 1 0 0 0
+ >>>  1 1 0 0 0 1 1 0 0 0
+ >>>  1 1 0 0 0 1 1 1 1 0
+ >>>  1 1 0 0 0 1 1 1 1 0
+ >>>  1 1 1 0 1 1 1 1 1 0
+ >>>  1 1 1 0 1 1 1 1 1 0
+ >>>  1 1 1 1 1 1 1 1 1 0
+ >>>  1 1 1 1 1 1 1 1 1 0
+ >>>  1 1 1 1 1 1 1 1 1 0
+ >>>  1 1 1 1 1 1 1 1 1 0
+ >>>  1 1 1 1 1 1 1 1 1 0
+ >>>  6
+ >>>  3
+ >>>  5
+
+ <<<  #rotate
+ <<<  #right
+ <<<  #right
+ <<<  #right
+ <<<  #right
+ <<<  #drop
+ <<<  #finish
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
